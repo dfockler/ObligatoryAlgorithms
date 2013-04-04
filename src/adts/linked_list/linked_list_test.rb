@@ -5,7 +5,8 @@ require "test/unit"
 class LinkedListTest < Test::Unit::TestCase
 	def test_find_by_index
 		list = LinkedList.new(3)
-		assert_equal 3, list.find_by_index(0).value
+		list.insert(4)
+		assert_equal 4, list.find_by_index(1).value
 	end
 
 	def test_insert
@@ -30,11 +31,35 @@ class LinkedListTest < Test::Unit::TestCase
 		assert_equal nil,list.find_by_index(5)
 	end
 
+	def test_find_by_value_not_in_list
+		list = LinkedList.new(6)
+		list.insert(7)
+		assert_equal nil, list.find_by_value(20)
+	end
+
 	def test_find_by_value
 		list = LinkedList.new(6)
 		list.insert(5)
 		list.insert(8)
 		list.insert(7)
-		assert_equal nil, list.find_by_value(20) 
+		assert_equal 8, list.find_by_value(8).value
+	end
+
+	def test_remove_by_value
+		list = LinkedList.new(5)
+		list.insert(7)
+		list.insert(9)
+		list.insert(20)
+		list.remove_by_value(9)
+		assert_equal nil, list.find_by_value(9)
+	end
+
+	def test_remove_by_index
+		list = LinkedList.new(5)
+		list.insert(7)
+		list.insert(9)
+		list.insert(20)
+		list.remove_by_index(4)
+		puts list
 	end
 end
