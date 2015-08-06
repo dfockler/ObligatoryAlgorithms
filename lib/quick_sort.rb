@@ -4,16 +4,14 @@ class QuickSort
     lo = []
     pivot = array[pivot_index]
     array.each_with_index do |value, i|
-      if i != pivot_index
-        value < pivot ? lo << value : hi << value
-      end
+      value < pivot ? lo << value : hi << value unless i == pivot_index
     end
-    (lo << array[pivot_index]) + hi
+    (lo << pivot) + hi
   end
 
   def self.sort(array, lo = 0, hi = array.size)
     if lo < hi
-      p = lo
+      p = lo #using lo as pivot value
       array = pivot(array, p)
       sort(array, lo, p - 1)
       sort(array, p + 1, hi)
