@@ -36,7 +36,7 @@ class BloomFilter
   # A couple nice hash functions, just using 2 for the example
   def do_hash(input)
     a = OpenSSL::Digest.hexdigest("SHA224", input).to_i % 19
-    b = input.hash % 19
+    b = OpenSSL::Digest.hexdigest("SHA512", input).to_i % 19
     [a, b]
   end
 end

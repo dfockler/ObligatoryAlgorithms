@@ -1,5 +1,7 @@
 require 'thread'
 
+# This code was translated from Steve Klabnik's Rust code
+# https://github.com/steveklabnik/dining_philosophers
 class Philosopher
   attr_reader :name, :done, :left, :right
 
@@ -11,9 +13,8 @@ class Philosopher
   end
 
   def done
+    @done = true
     "#{@name} is done eating."
-
-    # send message to parent thread of doneness
   end
 
   def eat(table)
